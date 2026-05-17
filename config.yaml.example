@@ -1,0 +1,60 @@
+# =========================================================
+# Linko 行為設定範本
+# 複製此檔為 config.yaml 後依需求調整：cp config.yaml.example config.yaml
+# =========================================================
+
+bot:
+  # Bot 名稱（會出現在 / endpoint，可給 AI 當自稱）
+  name: "Linko 小助手"
+  language: "zh-TW"
+
+  # AI 人格 / 行為指示（最重要的一段！決定 Bot 怎麼說話）
+  persona: |
+    你是一個親切、有禮貌的客服助理，名字叫做 Linko。
+    請用繁體中文回覆，語氣自然、簡潔、不要太長。
+    遇到你不確定的問題時，請誠實告訴使用者「我不太確定，建議您聯絡真人客服」，
+    不要編造資訊。
+
+ai:
+  # provider 可選：openai / anthropic / gemini / lm_studio / ollama
+  # 對應的 model 名稱請參考 LiteLLM 文件：
+  #   https://docs.litellm.ai/docs/providers
+  #
+  # 範例：
+  #   provider: "openai"     model: "gpt-4o-mini"
+  #   provider: "anthropic"  model: "claude-3-5-haiku-20241022"
+  #   provider: "gemini"     model: "gemini-1.5-flash"
+  #   provider: "lm_studio"  model: "qwen2.5-7b-instruct"  # 請改成你 LM Studio 載入的模型
+  #   provider: "ollama"     model: "llama3.2"
+  provider: "openai"
+  model: "gpt-4o-mini"
+  temperature: 0.7
+  max_tokens: 500
+
+memory:
+  # 是否啟用多輪對話記憶（僅儲存於記憶體，重啟即清空）
+  enabled: true
+  # 每位使用者保留最近幾輪對話（一輪 = 一問一答）
+  max_turns: 10
+
+knowledge_base:
+  # 是否啟用知識庫
+  # 啟用後，啟動時會把 path 底下符合 extensions 的檔案內容
+  # 全部讀進來、concat 後附加到 system prompt，
+  # 讓 Bot 能依據你的 FAQ 回答客人。改完知識庫需要重啟程式才會生效。
+  enabled: true
+  # 知識庫資料夾位置（相對於 main.py 執行目錄）
+  path: "knowledge_base"
+  # 要讀取的副檔名
+  extensions: [".txt", ".md"]
+  # 總字元上限。避免不小心放一個大檔撐爆 LLM context / API 費用。
+  # 若總長超過此值，超過的檔案會被略過並印出 warning。
+  max_chars: 10000
+
+fallback:
+  # 當 AI 呼叫失敗時的回覆
+  error_message: "抱歉，我現在有點忙不過來，請稍後再試 🙏"
+
+rate_limit:
+  # 同一位使用者兩則訊息之間的最小間隔秒數（0 = 不限制）
+  cooldown_seconds: 1

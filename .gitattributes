@@ -1,0 +1,35 @@
+# Normalise text files to LF on commit so Windows developers and Linux
+# contributors don't see whitespace-only diffs in PRs.
+* text=auto eol=lf
+
+# Explicit text files
+*.py            text eol=lf
+*.md            text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.txt           text eol=lf
+*.cfg           text eol=lf
+*.toml          text eol=lf
+*.json          text eol=lf
+*.sh            text eol=lf
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
+.env.example    text eol=lf
+Dockerfile      text eol=lf
+
+# Windows scripts must keep CRLF
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+*.ps1           text eol=crlf
+
+# Mark as binary (no auto conversion)
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.ico           binary
+*.svg           binary
+*.zip           binary
+*.gz            binary
+*.tar           binary
+*.pdf           binary

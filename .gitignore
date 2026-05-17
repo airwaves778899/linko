@@ -1,0 +1,64 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual environments ---
+venv/
+.venv/
+env/
+ENV/
+
+# --- Secrets (DO NOT COMMIT) ---
+.env
+.env.local
+.env.*.local
+config.yaml
+
+# --- Local-only design docs (kept on disk, not pushed) ---
+PROPOSAL.md
+
+# --- IDE ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs / runtime ---
+*.log
+logs/
+*.pid
+
+# --- Knowledge base (使用者自有資料，不入版控) ---
+knowledge_base/*
+!knowledge_base/.gitkeep
+!knowledge_base/example_faq.txt
+
+# --- Test / coverage ---
+.pytest_cache/
+.coverage
+htmlcov/
